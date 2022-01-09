@@ -14,10 +14,18 @@ let hemligt_ord = ordlista[Math.floor(Math.random() * ordlista.length)]
 // Funktioner för att uppdatera rutnätet
 function sätt_bokstav(rad, kolumn, bokstav) {
 	rutnät[rad][kolumn].innerHTML = `<span>${bokstav}</span>`
+	animera(rutnät[rad][kolumn], "blop", 100)
 }
 
 function sätt_status(rad, kolumn, status) {
 	rutnät[rad][kolumn].classList.add(status)
+}
+
+function animera(element, animation, längd_i_ms) {
+	element.style.animation = `${animation} ${längd_i_ms}ms linear`
+	setTimeout(() => {
+		element.style.animation = ""
+	}, längd_i_ms)
 }
 
 // Funktioner för att rätta
@@ -104,6 +112,10 @@ function tryck_tangent(tangent) {
 		sätt_bokstav(nuvarande_rad, nuvarande_kolumn, tangent)
 		nuvarande_kolumn++
 	}
+
+	if (tangentbord[tangent]) {
+		animera(tangentbord[tangent].element, "blop", 150)
+	}
 }
 
 function starta() {
@@ -135,8 +147,10 @@ function starta() {
 		)
 
 		if (r == tangentbords_layout[2]) {
-			const enter = skapa_div(tangentbordsradelement, "bred-tangent", "gissa")
-			enter.onclick = () => tryck_tangent("Enter")
+			tangentbord.Enter = {
+				element: skapa_div(tangentbordsradelement, "bred-tangent", "gissa"),
+			}
+			tangentbord.Enter.element.onclick = () => tryck_tangent("Enter")
 		}
 
 		for (let b of bokstäver_i_rad) {
@@ -151,12 +165,10 @@ function starta() {
 		}
 
 		if (r == tangentbords_layout[2]) {
-			const suddtangent = skapa_div(
-				tangentbordsradelement,
-				"bred-tangent",
-				"sudda",
-			)
-			suddtangent.onclick = () => tryck_tangent("Backspace")
+			tangentbord.Backspace = {
+				element: skapa_div(tangentbordsradelement, "bred-tangent", "sudda"),
+			}
+			tangentbord.Backspace.element.onclick = () => tryck_tangent("Backspace")
 		}
 	}
 
