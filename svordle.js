@@ -1,13 +1,9 @@
 // Inställningar
 const tillåtna_bokstäver = "abcdefghijklmnopqrstuvwxyzåäö"
-const tangentbords_layout = [
-	"qwertyuiopå",
-	"asdfghjklöä",
-	"zxcvbnm"
-]
+const tangentbords_layout = ["qwertyuiopå", "asdfghjklöä", "zxcvbnm"]
 
 // Tillstånd
-let meddelandeelement;
+let meddelandeelement
 const rutnät = []
 const tangentbord = {}
 
@@ -37,7 +33,7 @@ function visa_meddelande(text, ta_bort_efter_ms = 5000) {
 	if (ta_bort_efter_ms > 0)
 		setTimeout(() => {
 			meddelande.remove()
-		}, 5000);
+		}, 5000)
 }
 
 function gissa() {
@@ -63,13 +59,11 @@ function gissa() {
 		let rätt = hemligt_ord[b] == bokstav
 		let finns = hemligt_ord.includes(bokstav)
 		let status = rätt ? "rätt" : "fel"
-		if (finns && !rätt)
-			status = "finns"
+		if (finns && !rätt) status = "finns"
 
 		sätt_status(nuvarande_rad, b, status)
 		var tangent = tangentbord[bokstav]
-		if (tangent.status != "rätt")
-			tangent.status = status
+		if (tangent.status != "rätt") tangent.status = status
 
 		tangent.element.className = "tangent"
 		tangent.element.classList.add(tangent.status)
@@ -89,11 +83,13 @@ function gissa() {
 function skapa_div(förälder, klass, inreHTML) {
 	var div = document.createElement("div")
 	div.className = klass
-	if (inreHTML)
+	if (inreHTML) {
 		div.innerHTML = inreHTML
+	}
 
-	if (förälder != null)
+	if (förälder != null) {
 		förälder.appendChild(div)
+	}
 
 	return div
 }
@@ -104,10 +100,7 @@ function tryck_tangent(tangent) {
 		sätt_bokstav(nuvarande_rad, nuvarande_kolumn, "")
 	} else if (tangent == "Enter") {
 		gissa()
-	} else if (
-		nuvarande_kolumn <= 4 &&
-		tillåtna_bokstäver.includes(tangent)
-	) {
+	} else if (nuvarande_kolumn <= 4 && tillåtna_bokstäver.includes(tangent)) {
 		sätt_bokstav(nuvarande_rad, nuvarande_kolumn, tangent)
 		nuvarande_kolumn++
 	}
@@ -115,7 +108,6 @@ function tryck_tangent(tangent) {
 
 function starta() {
 	console.log("Spelet startar...")
-
 
 	const kontainerelement = document.querySelector(".kontainer")
 	meddelandeelement = skapa_div(kontainerelement, "meddelanden")
@@ -136,14 +128,16 @@ function starta() {
 	// Skapa Tangentbord
 	const tangentbordselement = skapa_div(kontainerelement, "tangentbord")
 	for (let r of tangentbords_layout) {
-		const bokstäver_i_rad = r.split('')
-		const tangentbordsradelement = skapa_div(tangentbordselement, "tangentbordsrad")
+		const bokstäver_i_rad = r.split("")
+		const tangentbordsradelement = skapa_div(
+			tangentbordselement,
+			"tangentbordsrad",
+		)
 
 		if (r == tangentbords_layout[2]) {
 			const enter = skapa_div(tangentbordsradelement, "bred-tangent", "gissa")
 			enter.onclick = () => tryck_tangent("Enter")
 		}
-
 
 		for (let b of bokstäver_i_rad) {
 			const tangentelement = skapa_div(tangentbordsradelement, "tangent", b)
@@ -157,14 +151,18 @@ function starta() {
 		}
 
 		if (r == tangentbords_layout[2]) {
-			const suddtangent = skapa_div(tangentbordsradelement, "bred-tangent", "sudda")
+			const suddtangent = skapa_div(
+				tangentbordsradelement,
+				"bred-tangent",
+				"sudda",
+			)
 			suddtangent.onclick = () => tryck_tangent("Backspace")
 		}
 	}
 
-	window.addEventListener("keydown", ev => {
+	window.addEventListener("keydown", (ev) => {
 		tryck_tangent(ev.key)
-	});
+	})
 }
 
 starta()
