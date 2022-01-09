@@ -14,7 +14,7 @@ h1 {
 	margin: 0;
 	margin-top: 5px;
 	padding: 0;
-	font-size: 3em;
+	font-size: 2em;
 }
 
 a {
@@ -37,7 +37,6 @@ a {
 	flex: 0 0;
 	border-bottom: solid 1px #555;
 	padding-bottom: 10px;
-	font-size: 0.35em;
 }
 
 .meddelanden {
@@ -151,12 +150,12 @@ a {
 
 @keyframes blop {
 	0% {
-		transform: scale(100%);
+		transform: scale(1);
 	}
 	25% {
-		transform: scale(125%);
+		transform: scale(1.25);
 	}
 	100% {
-		transform: scale(100%);
+		transform: scale(1);
 	}
 }

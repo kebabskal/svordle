@@ -19,10 +19,11 @@ function sätt_bokstav(rad, kolumn, bokstav) {
 
 function sätt_status(rad, kolumn, status) {
 	rutnät[rad][kolumn].classList.add(status)
+	animera(rutnät[rad][kolumn], "blop", 100)
 }
 
 function animera(element, animation, längd_i_ms) {
-	element.style.animation = `${animation} ${längd_i_ms}ms linear`
+	element.style.animation = `${animation} ${längd_i_ms}ms ease-in-out forwards`
 	setTimeout(() => {
 		element.style.animation = ""
 	}, längd_i_ms)
