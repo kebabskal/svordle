@@ -1,0 +1,146 @@
+body, html {
+	background-color: #222;
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+
+	overflow: hidden;
+	height: 100%;
+}
+
+h1 {
+	text-transform: uppercase;
+	margin: 0;
+	margin-top: 5px;
+	padding: 0;
+	font-size: 3em;
+}
+
+a {
+	color: gray;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+
+.kontainer {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.huvud {
+	flex: 0 0;
+	border-bottom: solid 1px #555;
+	padding-bottom: 10px;
+	font-size: 0.35em;
+}
+
+.meddelanden {
+	position: absolute;
+	left: 0;
+	top: 10px;
+	right: 0;
+
+	max-height: 2em;
+	display: flex;
+	flex-direction: column;
+	padding: 5px;
+}
+
+.meddelande {
+	background-color: grey;
+	color: white;
+	display: inline-block;
+	padding: 10px;
+	border-radius: 3px;
+}
+
+.rutnät {
+	flex: 1 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.tangentbord {
+	flex: 0 0;
+	padding: 0.5em;
+}
+
+.rad {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.ruta {
+	display: flex;
+	align-items: center;
+	width: 2em;
+	height: 2em;
+	border: solid 2px #555;
+	display: flex;
+	margin: 3px;
+	font-size: 25px;
+	text-align: center;
+}
+
+.ruta span {
+	flex: 1 1;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.rätt {
+	background-color: green !important;
+	border-color: green !important;
+}
+
+.finns {
+	background-color: orange !important;
+	border-color: orange !important;
+}
+
+.fel {
+	background-color: #333 !important;
+	border-color: #333 !important;
+	color: #666 !important;
+}
+
+.tangentbord .tangentbordsrad {
+	display: flex;
+	justify-content: center;
+	user-select: none;
+}
+
+.tangent, .bred-tangent {
+	font-size: 1em;
+	width: 2.5em;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	background-color: grey;
+	margin: 2px;
+	border-radius: 3px;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.tangent:hover, .bred-tangent:hover {
+	opacity: 0.75;
+}
+
+.tangent:active, .bred-tangent:active {
+	opacity: 0.5;
+}
+
+.bred-tangent {
+	width: 6em;
+	font-size: 0.75em;
+	padding-top: 14px;
+}
