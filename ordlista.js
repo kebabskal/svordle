@@ -1,4 +1,4 @@
-const ordlista = [
+const ordlista = JSON.parse(`[
   "abbot",
   "abort",
   "absid",
@@ -4585,4 +4585,5 @@ const ordlista = [
   "övers",
   "övlig",
   "övrig"
-]
+]`)
+
